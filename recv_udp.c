@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
   printsin( &s_in, "RECV_UDP:", "Local socket is:"); 
   fflush(stdout);
 
+  // check if port is available etc
   bind(socket_fd, (struct sockaddr *)&s_in, sizeof(s_in));
 
   for(;;) {

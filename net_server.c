@@ -24,16 +24,19 @@ int main(void)
   size_t len; 
   int count;
   
+  // Create a new socket of type ipv4 and TCP, without stating the protocol and returning its ptr
   sock = socket(AF_INET, SOCK_STREAM, 0);  
   if (sock < 0)
     { perror ("Error opening channel");
       clean_up(1, &sock);
     }
   
+  // set all values in the buffer to zero
   bzero(&serv_name, sizeof(serv_name)); 
   serv_name.sin_family = AF_INET;                                   
   serv_name.sin_port = htons(PORT); 
 
+  // check if port is available etc
   if (bind(sock, (struct sockaddr *)&serv_name, sizeof(serv_name)) < 0)
     { perror ("Error naming channel");
       clean_up(1, &sock);
